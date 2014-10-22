@@ -9,7 +9,7 @@
 
   var Game = Asteroids.Game = function (height, width) {
     this.height = height;
-    this.width = width;   
+    this.width = width;
     this.asteroids = [];
     this.bullets = [];
     this.ships = [];
@@ -59,7 +59,8 @@
   Game.prototype.addShip = function () {
     var ship = new Asteroids.Ship( {
       pos: this.randomPosition(),
-      game: this
+      game: this,
+      direction: 0
     });
 
     this.add(ship);
@@ -89,7 +90,7 @@
 
   Game.prototype.wrap = function (pos) {
     var newPos = pos;
-   
+
     if (pos[0] > this.width) {
       newPos[0] = pos[0] - this.width;
     } else if (pos[0] < 0) {

@@ -8,25 +8,41 @@
   var MovingObject = Asteroids.MovingObject = function (params) {
     this.pos = params.pos;
     this.vel = params.vel;
+    this.angle = Asteroids.Util.angle(this.vel);
     this.radius = params.radius;
     this.color = params.color;
     this.game = params.game;
+    this.direction = params.direction;
+
+
+
+    if (this instanceof Asteroids.Ship) {
+      this.image = new Image();
+      this.image.src = "../public/images/nyan.png";
+    } else if (this instanceof Asteroids.Asteroid) {
+      var mexiNyan = new Image();
+      mexiNyan.src = "../public/images/mexinyan.png";
+
+      var cowNyan = new Image();
+      cowNyan.src = "../public/images/cownyan.png";
+
+      var whiteNyan = new Image();
+      whiteNyan.src = "../public/images/whitenyan.png";
+
+      var evilNyan = new Image();
+      evilNyan.src = "../public/images/evilnyan.png";
+
+      var nyans = [cowNyan, whiteNyan, evilNyan];
+
+      this.image = nyans[Math.floor(Math.random() * nyans.length)];
+    } else {
+      this.image = new Image();
+      this.image.src = "../public/images/rainbow.png"
+    }
   };
 
   MovingObject.prototype.draw = function(ctx) {
-    ctx.strokeStyle = this.color;
-    ctx.beginPath();
-
-    ctx.arc(
-      this.pos[0],
-      this.pos[1],
-      this.radius,
-      0,
-      2 * Math.PI,
-      false
-    );
-
-    ctx.stroke();
+      ctx.drawImage(this.image,this.pos[0],this.pos[1]);
   };
 
   MovingObject.prototype.isWrappable = true;
@@ -38,7 +54,7 @@
     } else {
       this.pos = [this.pos[0] + this.vel[0], this.pos[1] + this.vel[1]];
     }
-    
+
     if (this.game.isOutOfBounds(this.pos)) {
       if (this.isWrappable) {
         this.pos = this.game.wrap(this.pos);
