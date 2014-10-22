@@ -18,31 +18,31 @@
 
     if (this instanceof Asteroids.Ship) {
       this.image = new Image();
-      this.image.src = "../public/images/nyan.png";
+      this.image.src = "/images/nyan.png";
     } else if (this instanceof Asteroids.Asteroid) {
       var mexiNyan = new Image();
-      mexiNyan.src = "../public/images/mexinyan.png";
+      mexiNyan.src = "/images/mexinyan.png";
 
       var cowNyan = new Image();
-      cowNyan.src = "../public/images/cownyan.png";
+      cowNyan.src = "/images/cownyan.png";
 
       var whiteNyan = new Image();
-      whiteNyan.src = "../public/images/whitenyan.png";
+      whiteNyan.src = "/images/whitenyan.png";
 
       var evilNyan = new Image();
-      evilNyan.src = "../public/images/evilnyan.png";
+      evilNyan.src = "/images/evilnyan.png";
 
       var nyans = [cowNyan, whiteNyan, evilNyan];
 
       this.image = nyans[Math.floor(Math.random() * nyans.length)];
     } else {
       this.image = new Image();
-      this.image.src = "../public/images/rainbow.png"
+      this.image.src = "/images/rainbow.png"
     }
   };
 
   MovingObject.prototype.draw = function(ctx) {
-      ctx.drawImage(this.image,this.pos[0],this.pos[1]);
+    ctx.drawImage(this.image, this.pos[0], this.pos[1]);
   };
 
   MovingObject.prototype.isWrappable = true;
