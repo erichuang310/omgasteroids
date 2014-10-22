@@ -22,6 +22,7 @@
   	if (otherObj instanceof Asteroids.Asteroid) {
 		this.remove();
 		otherObj.remove();
+    this.game.score += 1;
   	}
   };
 })();

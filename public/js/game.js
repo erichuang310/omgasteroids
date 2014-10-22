@@ -4,7 +4,7 @@
   if (typeof Asteroids === "undefined") {
     window.Asteroids = {};
   }
-
+  var MIN_NUM_ASTEROIDS = 10;
   var NUM_ASTEROIDS = 15;
 
   var Game = Asteroids.Game = function (height, width) {
@@ -13,6 +13,7 @@
     this.asteroids = [];
     this.bullets = [];
     this.ships = [];
+    this.score = 0;
 
     this.addAsteroids();
   };
@@ -46,7 +47,7 @@
   };
 
   Game.prototype.addAsteroids = function () {
-    for (var i = 0; i < NUM_ASTEROIDS; i++) {
+    for (var i = this.asteroids.length; i < NUM_ASTEROIDS; i++) {
       var asteroid = new Asteroids.Asteroid({
         pos: this.randomPosition(),
         game: this
@@ -130,5 +131,9 @@
   Game.prototype.step = function () {
     this.moveObjects();
     this.checkCollisions();
+    if (this.asteroids.length <= MIN_NUM_ASTEROIDS) {
+      this.addAsteroids();
+    };
+    console.log(this.score);
   };
 })();
