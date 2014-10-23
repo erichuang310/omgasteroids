@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   remote: http://rubygems.org/
   specs:
+    newrelic_rpm (3.9.6.257)
     rack (1.5.2)
     rails_12factor (0.0.2)
       rails_serve_static_assets
@@ -13,5 +14,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  newrelic_rpm
   rack
   rails_12factor
